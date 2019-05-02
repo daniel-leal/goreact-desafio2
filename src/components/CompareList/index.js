@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container, Repository } from './styles';
+import {
+  Container, Repository, RemoveButton, RefreshButton,
+} from './styles';
 
 const CompareList = ({ repositories }) => (
   <Container>
@@ -27,6 +29,9 @@ const CompareList = ({ repositories }) => (
             {repository.lastCommit} <small>last commit</small>
           </li>
         </ul>
+        <hr />
+        <RefreshButton>Atualizar</RefreshButton>
+        <RemoveButton>Remover</RemoveButton>
       </Repository>
     ))}
   </Container>
