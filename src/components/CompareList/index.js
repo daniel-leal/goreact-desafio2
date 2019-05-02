@@ -5,7 +5,7 @@ import {
   Container, Repository, RemoveButton, RefreshButton,
 } from './styles';
 
-const CompareList = ({ repositories }) => (
+const CompareList = ({ repositories, removeRepo, refreshRepo }) => (
   <Container>
     {repositories.map(repository => (
       <Repository key={repository.id}>
@@ -30,8 +30,8 @@ const CompareList = ({ repositories }) => (
           </li>
         </ul>
         <hr />
-        <RefreshButton>Atualizar</RefreshButton>
-        <RemoveButton>Remover</RemoveButton>
+        <RefreshButton onClick={() => refreshRepo(repository.full_name)}>Atualizar</RefreshButton>
+        <RemoveButton onClick={() => removeRepo(repository.id)}>Remover</RemoveButton>
       </Repository>
     ))}
   </Container>
@@ -46,11 +46,14 @@ CompareList.propTypes = {
         login: PropTypes.string,
         avatar_url: PropTypes.string,
       }),
+      full_name: PropTypes.string,
       stargazers_count: PropTypes.number,
       open_issues_count: PropTypes.number,
       pushed_at: PropTypes.string,
     }),
   ).isRequired,
+  removeRepo: PropTypes.func.isRequired,
+  refreshRepo: PropTypes.func.isRequired,
 };
 
 export default CompareList;
